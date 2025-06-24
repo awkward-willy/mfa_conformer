@@ -139,6 +139,11 @@ class Task(LightningModule):
         labels, scores = score.cosine_score(
             self.trials, index_mapping, eval_vectors)
         EER, threshold = score.compute_eer(labels, scores)
+        # print("labels: ", labels)
+        # print("scores: ", scores)
+        # print("self.trials: ", self.trials)
+        # print("index_mapping: ", index_mapping)
+        # print("eval_vectors: ", eval_vectors)
 
         print("\ncosine EER: {:.2f}% with threshold {:.2f}".format(EER*100, threshold))
         self.log("cosine_eer", EER*100)
@@ -238,6 +243,7 @@ def cli_main():
             max_epochs=args.max_epochs,
             plugins=DDPPlugin(find_unused_parameters=False),
             gpus=AVAIL_GPUS,
+            precision=16,
             num_sanity_val_steps=-1,
             sync_batchnorm=True,
             callbacks=[checkpoint_callback, lr_monitor],

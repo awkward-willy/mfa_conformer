@@ -85,7 +85,7 @@ if __name__ == "__main__":
     outSequences, outSpeakers = findAllSeqs(args.dataset_dir,
                                             extension=args.extension,
                                             load_data_list=False,
-                                            speaker_level=1)
+                                            speaker_level=args.speaker_level)
 
     outSequences = np.array(outSequences, dtype=str)
     utt_spk_int_labels = outSequences.T[0].astype(int)

@@ -21,6 +21,6 @@ if __name__ == "__main__":
     f = open(args.dst_trials_path, "w")
     for item in trials:
         enroll_path = os.path.join(
-            args.voxceleb1_root, "wav", item[1])
-        test_path = os.path.join(args.voxceleb1_root, "wav", item[2])
+            args.voxceleb1_root, item[1])
+        test_path = os.path.join(args.voxceleb1_root, item[2])
         f.write("{} {} {}\n".format(item[0], enroll_path, test_path))
